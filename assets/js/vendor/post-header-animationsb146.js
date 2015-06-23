@@ -46,25 +46,14 @@
             }
         }
 
-        function touchmove(e) {
-            preventDefault(e);
-        }
-
-        function wheel(e) {
-            // for IE 
-            //if( ie ) {
-                //preventDefault(e);
-            //}
-        }
-
         function disable_scroll() {
-            window.onmousewheel = document.onmousewheel = wheel;
             document.onkeydown = keydown;
-            document.body.ontouchmove = touchmove;
+            window.addEventListener( 'touchmove', scrollPage );
         }
 
         function enable_scroll() {
             window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;  
+            window.removeEventListener( 'touchmove', scrollPage );
         }
 
         var docElem = window.document.documentElement,
